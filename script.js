@@ -1,17 +1,61 @@
 const whatsapp = "5531971268087";
 
 const pizzas = [
- {name:"Calabresa",preco:49.90},
- {name:"Mussarela",preco:49.90},
- {name:"Portuguesa",preco:52.90},
- {name:"Frango com Catupiry",preco:59.90},
- {name:"4 Queijos",preco:59.90},
- {name:"Marguerita",preco:49.90},
- {name:"Palmito",preco:59.90},
- {name:"Caipira",preco:52.90},
- {name:"Lombinho",preco:59.90},
- {name:"Costela",preco:69.90},
- {name:"Forno da Casa",preco:69.90}
+{
+ name:"Calabresa",
+ preco:49.90,
+ descricao:"Molho, muçarela, calabresa, cebola, azeitona e orégano"
+},
+{
+ name:"Mussarela",
+ preco:49.90,
+ descricao:"Molho, muçarela, azeitona e orégano"
+},
+{
+ name:"Portuguesa",
+ preco:52.90,
+ descricao:"Molho, muçarela, presunto, ovo, cebola, bacon, azeitona e orégano"
+},
+{
+ name:"Frango com Catupiry",
+ preco:59.90,
+ descricao:"Molho, muçarela, frango, catupiry, azeitona e orégano"
+},
+{
+ name:"4 Queijos",
+ preco:59.90,
+ descricao:"Molho, muçarela, provolone, parmesão, catupiry, azeitona e orégano"
+},
+{
+ name:"Marguerita",
+ preco:39.90,
+ descricao:"Molho, muçarela, manjericão, tomate, azeitona e orégano"
+},
+{
+ name:"Palmito",
+ preco:59.90,
+ descricao:"Molho, muçarela, palmito, pimentão, cebola, tomate, azeitona e orégano"
+},
+{
+ name:"Caipira",
+ preco:52.90,
+ descricao:"Molho, muçarela, frango, bacon, milho, cebola, azeitona e orégano"
+},
+{
+ name:"Lombinho",
+ preco:59.90,
+ descricao:"Molho, muçarela, lombinho, catupiry, cebola, azeitona e orégano"
+},
+{
+ name:"Costela",
+ preco:69.90,
+ descricao:"Molho, muçarela, costela bovina desfiada, cebola caramelizada, catupiry, pimentão e cebolinha "
+},
+{
+ name:"Forno da Casa",
+ preco:69.90,
+ descricao:"Molho, muçarela, presunto, frango, bacon, catupiry, cebola, pimentão, azeitona e orégano"
+}
 ];
 
 const bebidas = [
@@ -30,28 +74,44 @@ let pedido = {
 function mostrarEtapa(numero){
 
  document.querySelectorAll(".tela").forEach(tela=>{
-  tela.style.display="none";
+  tela.style.display = "none";
  });
 
- document.getElementById("etapa"+numero).style.display="block";
+ const etapa =
+ document.getElementById("etapa" + numero);
+
+ if(!etapa) return;
+
+ if(numero === 1){
+
+  etapa.style.display = "flex";
+
+ }else{
+
+  etapa.style.display = "block";
+
+ }
 
  const carrinho =
-document.getElementById("carrinhoFlutuante");
+ document.getElementById("carrinhoFlutuante");
 
-if(numero >= 7){
+ if(carrinho){
 
- carrinho.style.display = "none";
+  if(numero >= 7){
 
-}else{
+   carrinho.style.display = "none";
 
- atualizarCarrinhoFlutuante();
+  }else{
 
-}
+   atualizarCarrinhoFlutuante();
+
+  }
+
+ }
 
  window.scrollTo(0,0);
 
 }
-
 function mostrarEtapaCustom(id){
 
  document.querySelectorAll(".tela").forEach(tela=>{
@@ -91,21 +151,27 @@ function mostrarEtapaInteira(){
   <div class="sabor">
 
    <div>
+
     <strong>${pizza.name}</strong>
-    <br>
+
+    <p class="descricao-pizza">
+        ${pizza.descricao}
+    </p>
+
     <span class="preco">
-    R$ ${pizza.preco.toFixed(2)}
+        R$ ${pizza.preco.toFixed(2)}
     </span>
-   </div>
 
-   <button onclick="escolherPizza('${pizza.name}',${pizza.preco})">
-   +
-   </button>
+</div>
 
-  </div>
-  `;
+<button onclick="escolherPizza('${pizza.name}',${pizza.preco})">
+    +
+</button>
 
- });
+</div>
+`;
+
+});
 
 }
 
@@ -359,7 +425,7 @@ totalBebidas();
  if(pizza.borda){
 
   resumo += `
-  <br>🧀 Borda Catupiry
+  <br> Borda Catupiry
   `;
 
  }
@@ -369,7 +435,7 @@ totalBebidas();
  
  pedido.bebidas.forEach(item=>{
 
-  resumo += `<br>🥤 ${item.nome} (${item.qtd}x)`;
+  resumo += `<br> ${item.nome} (${item.qtd}x)`;
 
  });
 
@@ -521,7 +587,7 @@ document.getElementById("obs").value;
  pedido.bebidas.forEach(item=>{
 
   bebidasTexto +=
-  `🥤 ${item.nome} (${item.qtd}x)\n`;
+  ` ${item.nome} (${item.qtd}x)\n`;
 
  });
 
@@ -582,7 +648,7 @@ function mostrarConfirmacao(){
   if(pizza.borda){
 
    html += `
-   <p>🧀 Borda Catupiry</p>
+   <p> Borda Catupiry</p>
    `;
 
    total += pizza.precoBorda;
@@ -601,7 +667,7 @@ function mostrarConfirmacao(){
 
    html += `
     <p>
-    🥤 ${b.nome} x${b.qtd}
+     ${b.nome} x${b.qtd}
     </p>
    `;
 
