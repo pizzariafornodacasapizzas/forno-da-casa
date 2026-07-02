@@ -1,0 +1,429 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f5f5f5;
+color:#333;
+}
+
+/* TELAS */
+
+.tela{
+display:none;
+min-height:100vh;
+padding:20px;
+}
+
+h2{
+color:#b71c1c;
+margin-bottom:20px;
+}
+
+/* HOME */
+
+.home{
+position:relative;
+height:100vh;
+padding:0;
+overflow:hidden;
+}
+
+.fundo-home{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.50);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:25px;
+color:#fff;
+}
+
+.logo-home{
+width:180px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+.overlay h1{
+font-size:34px;
+margin-bottom:15px;
+}
+
+.overlay p{
+font-size:17px;
+margin-bottom:8px;
+}
+
+.btn-home{
+margin-top:25px;
+width:100%;
+max-width:400px;
+padding:18px;
+background:#25D366;
+color:white;
+border:none;
+border-radius:15px;
+font-size:22px;
+font-weight:700;
+cursor:pointer;
+}
+
+/* STATUS */
+
+.status{
+padding:10px 20px;
+border-radius:30px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.aberto{
+background:#d4edda;
+color:#0f7a2f;
+}
+
+.fechado{
+background:#f8d7da;
+color:#a30000;
+}
+
+/* BOTÕES */
+
+button{
+cursor:pointer;
+}
+
+.opcoes{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.opcao{
+padding:20px;
+background:white;
+border:none;
+border-radius:15px;
+font-size:18px;
+font-weight:600;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.continuar{
+width:100%;
+padding:16px;
+margin-top:20px;
+background:#ff9800;
+color:white;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:700;
+}
+
+/* CAMPOS */
+
+input,
+select,
+textarea{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border:1px solid #ddd;
+border-radius:12px;
+font-size:16px;
+background:white;
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+/* SABORES */
+
+.sabor{
+background:white;
+padding:18px;
+margin-bottom:12px;
+border-radius:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.preco{
+color:#b71c1c;
+font-weight:700;
+}
+
+.sabor button{
+background:#25D366;
+color:white;
+border:none;
+width:50px;
+height:50px;
+border-radius:50%;
+font-size:28px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* BEBIDAS */
+
+.bebida{
+background:white;
+padding:18px;
+margin-bottom:12px;
+border-radius:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.bebida button{
+background:#25D366;
+color:white;
+border:none;
+width:50px;
+height:50px;
+border-radius:50%;
+font-size:28px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* RESUMOS */
+
+#resumoPedido,
+#resumoFinal{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+margin-bottom:20px;
+}
+
+#resumoPedido p,
+#resumoFinal p{
+margin-bottom:10px;
+}
+
+/* BOTÕES FINAIS */
+
+.botoes{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.botoes button{
+padding:15px;
+border:none;
+border-radius:12px;
+font-size:16px;
+font-weight:600;
+}
+
+.botoes button:first-child{
+background:#ff9800;
+color:white;
+}
+
+.botoes button:last-child{
+background:#25D366;
+color:white;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+width:100%;
+padding:18px;
+background:#25D366;
+color:white;
+border:none;
+border-radius:12px;
+font-size:20px;
+font-weight:700;
+}
+
+/* CARRINHO FLUTUANTE */
+
+.carrinho-flutuante{
+position:fixed;
+bottom:15px;
+left:15px;
+right:15px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:15px;
+display:none;
+align-items:center;
+justify-content:space-between;
+box-shadow:0 5px 20px rgba(0,0,0,.25);
+z-index:9999;
+
+/* NOVO */
+max-height:180px;
+overflow-y:auto;
+}
+
+.carrinho-info{
+display:flex;
+flex-direction:column;
+}
+
+#resumoFlutuante{
+font-size:14px;
+line-height:20px;
+}
+
+#totalFlutuante{
+font-size:22px;
+font-weight:bold;
+margin-top:5px;
+}
+
+.btn-carrinho{
+background:white;
+color:#25D366;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+font-weight:bold;
+}
+
+/* CONTADOR DE BEBIDAS */
+
+.contador-bebida{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.btn-menos,
+.btn-mais{
+width:38px !important;
+height:38px !important;
+border-radius:50%;
+border:none;
+background:#25D366;
+color:white;
+font-size:22px;
+font-weight:bold;
+}
+
+.qtd-bebida{
+font-size:18px;
+font-weight:bold;
+min-width:20px;
+text-align:center;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.overlay h1{
+font-size:28px;
+}
+
+.logo-home{
+width:150px;
+}
+
+.btn-home{
+font-size:20px;
+}
+
+}
+.carrinho-info{
+    text-align:center;
+}
+.btn-frete{
+    width:100%;
+    padding:18px;
+    margin-top:15px;
+
+    background:#25D366;
+    color:white;
+
+    border:none;
+    border-radius:12px;
+
+    font-size:18px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.btn-frete:hover{
+    transform:scale(1.02);
+}
+.descricao-pizza{
+    font-size:13px;
+    color:#666;
+    margin:4px 0;
+    line-height:18px;
+}
+
+.tela{
+    padding-bottom:140px;
+}
+
+.carrinho-flutuante{
+    max-height:100px;
+    overflow:hidden;
+}
+
+#resumoFlutuante{
+    max-height:50px;
+    overflow-y:auto;
+}
+
+#totalFlutuante{
+    margin-top:5px;
+}
+#infoFrete{
+padding:10px;
+margin-bottom:12px;
+border-radius:10px;
+font-weight:600;
+display:none;
+background:#f5f5f5;
+}
+.btn-voltar{
+background:#666;
+color:white;
+margin-top:10px;
+}
+.btn-verde{
+background:#25D366;
+}
