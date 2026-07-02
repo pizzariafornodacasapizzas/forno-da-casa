@@ -52,12 +52,16 @@ Carregando...
 
 <div class="opcoes">
 
-<button class="opcao" onclick="selecionarTipo('inteira')">
-🍕 Pizza Inteira - 8 Pedaços - 35cm
+<button class="opcao" onclick="selecionarTipo('grande')">
+🍕 Pizza Inteira Família - 8 Pedaços - 35cm
 </button>
 
 <button class="opcao" onclick="selecionarTipo('meio')">
-🍕🍕 Pizza Dois Sabores - 8 Pedaços - 35cm
+🍕🍕 Pizza Dois Sabores Família - 8 Pedaços - 35cm
+</button>
+
+<button class="opcao" onclick="selecionarTipo('broto')">
+🍕 Pizza Inteira Broto - 4 Pedaços - 25cm
 </button>
 
 </div>
@@ -71,6 +75,9 @@ Carregando...
 <h2>Escolha o sabor</h2>
 
 <div id="listaSaboresInteira"></div>
+<button class="continuar" onclick="mostrarEtapa(2)">
+⬅ Voltar 
+</button>
 
 </section>
 
@@ -86,8 +93,11 @@ Carregando...
 <label>Segundo sabor</label>
 <select id="sabor2"></select>
 
-<button class="continuar" onclick="confirmarMeioMeio()">
+<button class="continuar btn-verde" onclick="confirmarMeioMeio()">
 Continuar
+</button>
+<button class="continuar" onclick="mostrarEtapa(2)">
+⬅ Voltar
 </button>
 
 </section>
@@ -101,11 +111,19 @@ Continuar
 <div class="opcoes">
 
 <button class="opcao" onclick="selecionarBorda(false)">
-Sem Borda
+Borda Tradicional
 </button>
 
-<button class="opcao" onclick="selecionarBorda(true)">
-Catupiry + R$ 11,90
+<button
+    id="btnBorda"
+    class="opcao"
+    onclick="selecionarBorda(true)"
+>
+    Borda de Catupiry
+    <br>
+    <small id="valorBorda">
+        Acréscimo: R$ 11,90
+    </small>
 </button>
 
 </div>
@@ -163,7 +181,7 @@ Continuar
 </button>
 
 <button onclick="mostrarEtapa(8)">
-📍 Prosseguir para Endereço
+📍 Continuar para Endereço
 </button>
 
 </div>
@@ -190,8 +208,10 @@ Continuar
 <input
 type="text"
 id="bairro"
-placeholder="Bairro">
+placeholder="Bairro"
+oninput="verificarFrete()">
 
+<div id="infoFrete"></div>
 <textarea id="obs" placeholder="Observações"></textarea>
 
 <button class="btn-frete" onclick="calcularFrete()">
