@@ -1,60 +1,139 @@
+const URL_PLANILHA =
+"https://script.google.com/macros/s/AKfycbyL_9zGprrNTmFsU37u9VpWNivA9czDKB7rxdIe2g46InBtCsORu__fRj5Cp1JIaMWu/exec";
+
 const whatsapp = "5531971268087";
+
+const fretes = {
+
+ "mata grande": 0,
+ "vale das palmeiras 2": 0,
+"vale das palmeiras": 0,
+"iporanga": 0,
+"iporanga 2": 0,
+"são cristovão": 0,
+"sao cristovao": 0,
+"santo antonio": 0,
+"santa rosa": 0,
+"henrique nery": 5,
+"são jorge": 0,
+"sao jorge": 0,
+"são dimas": 0,
+"sao dimas": 0,
+"catarina": 0,
+"padre teodoro": 5,
+"padre teodoro 2": 5,
+"padre teodoro 1": 5,
+"varzea": 0,
+"várzea": 0,
+"novo horizonte": 0,
+"colorado": 3,
+"flórida": 0,
+"florida": 0,
+"são geraldo": 0,
+"sao geraldo": 0,
+"dona dora": 0,
+"donadora": 0,
+"progresso": 5,
+"morro do claro": 5,
+"industrias": 7,
+"bairro das industrias": 7,
+"centro": 5,
+"vapabuçu": 6,
+"canaa": 5,
+"jardim arizona": 7,
+"mangabeiras": 8,
+"mangabeira": 8,
+"boa vista": 5,
+"fatima": 5,
+"brasilia": 8,
+"nossa senhora do carmo": 5,
+"carmo": 5,
+"recanto do cedro": 0,
+"piedade": 0,
+"morro do claro": 5,
+"aeroporto industrial": 10,
+"aeroporto": 10,
+"jardim universitario": 3,
+
+
+
+
+};
+
+let tamanhoAtual = "grande";
 
 const pizzas = [
 {
+ name:"Forno da Casa (A MAIS PEDIDA)",
+ preco:74.90,
+ precoBroto:49.90,
+ descricao:"Molho, muçarela, presunto, frango, bacon, catupiry, cebola, pimentão, azeitona e orégano"
+},
+{
+ name:"Costela",
+ preco:74.90,
+ precoBroto:49.90,
+ descricao:"Molho, muçarela, costela bovina desfiada, cebola caramelizada, catupiry, pimentão e cebolinha "
+},
+{
+ name:"A Moda",
+ preco:54.90,
+ precoBroto:34.90,
+ descricao:"Molho, muçarela, presunto, calabresa, cebola, tomate, pimentão, azeitona e orégano"
+},
+{
  name:"Calabresa",
- preco:49.90,
+ preco:54.90,
+ precoBroto:34.90,
  descricao:"Molho, muçarela, calabresa, cebola, azeitona e orégano"
 },
 {
  name:"Mussarela",
- preco:49.90,
+ preco:54.90,
+ precoBroto:34.90,
  descricao:"Molho, muçarela, azeitona e orégano"
 },
 {
  name:"Portuguesa",
- preco:52.90,
+ preco:57.90,
+ precoBroto:39.90,
  descricao:"Molho, muçarela, presunto, ovo, cebola, bacon, azeitona e orégano"
 },
 {
  name:"Frango com Catupiry",
- preco:59.90,
+ preco:64.90,
+ precoBroto:39.90,
  descricao:"Molho, muçarela, frango, catupiry, azeitona e orégano"
 },
 {
  name:"4 Queijos",
- preco:59.90,
+ preco:64.90,
+ precoBroto:39.90,
  descricao:"Molho, muçarela, provolone, parmesão, catupiry, azeitona e orégano"
 },
 {
- name:"Marguerita",
- preco:39.90,
- descricao:"Molho, muçarela, manjericão, tomate, azeitona e orégano"
-},
-{
- name:"Palmito",
- preco:59.90,
- descricao:"Molho, muçarela, palmito, pimentão, cebola, tomate, azeitona e orégano"
-},
-{
  name:"Caipira",
- preco:52.90,
+ preco:57.90,
+ precoBroto:39.90,
  descricao:"Molho, muçarela, frango, bacon, milho, cebola, azeitona e orégano"
 },
 {
  name:"Lombinho",
- preco:59.90,
+ preco:64.90,
+ precoBroto:39.90,
  descricao:"Molho, muçarela, lombinho, catupiry, cebola, azeitona e orégano"
 },
 {
- name:"Costela",
- preco:69.90,
- descricao:"Molho, muçarela, costela bovina desfiada, cebola caramelizada, catupiry, pimentão e cebolinha "
+ name:"Marguerita",
+ preco:44.90,
+ precoBroto:29.90,
+ descricao:"Molho, muçarela, manjericão, tomate, azeitona e orégano"
 },
 {
- name:"Forno da Casa",
- preco:69.90,
- descricao:"Molho, muçarela, presunto, frango, bacon, catupiry, cebola, pimentão, azeitona e orégano"
+ name:"Palmito",
+ preco:64.90,
+ precoBroto:39.90,
+ descricao:"Molho, muçarela, palmito, pimentão, cebola, tomate, azeitona e orégano"
 }
 ];
 
@@ -124,12 +203,23 @@ function mostrarEtapaCustom(id){
 
 function selecionarTipo(tipo){
 
- if(tipo==="inteira"){
+ if(tipo === "grande"){
 
+  tamanhoAtual = "grande";
   mostrarEtapaInteira();
 
- }else{
+ }
 
+ else if(tipo === "broto"){
+
+  tamanhoAtual = "broto";
+  mostrarEtapaInteira();
+
+ }
+
+ else if(tipo === "meio"){
+
+  tamanhoAtual = "grande";
   mostrarEtapaMeio();
 
  }
@@ -147,6 +237,11 @@ function mostrarEtapaInteira(){
 
  pizzas.forEach(pizza=>{
 
+const preco =
+ tamanhoAtual === "broto"
+ ? pizza.precoBroto
+ : pizza.preco;
+
   lista.innerHTML += `
   <div class="sabor">
 
@@ -159,12 +254,12 @@ function mostrarEtapaInteira(){
     </p>
 
     <span class="preco">
-        R$ ${pizza.preco.toFixed(2)}
+        R$ ${preco.toFixed(2)}
     </span>
 
 </div>
 
-<button onclick="escolherPizza('${pizza.name}',${pizza.preco})">
+<button onclick="escolherPizza('${pizza.name}',${preco})">
     +
 </button>
 
@@ -205,11 +300,31 @@ function escolherPizza(nome,preco){
  pedido.pizzas.push({
   sabor:nome,
   preco:preco,
+  tamanho:tamanhoAtual,
   borda:false,
   precoBorda:0
  });
 
  mostrarEtapa(4);
+
+ const valorBorda =
+ document.getElementById("valorBorda");
+
+ if(valorBorda){
+
+    if(tamanhoAtual === "broto"){
+
+        valorBorda.innerHTML =
+        "R$ 7,90";
+
+    }else{
+
+        valorBorda.innerHTML =
+        "R$ 11,90";
+
+    }
+
+ }
 
 }
 
@@ -253,7 +368,24 @@ function selecionarBorda(sim){
  pedido.pizzas[pedido.pizzas.length - 1];
 
  ultimaPizza.borda = sim;
- ultimaPizza.precoBorda = sim ? 11.90 : 0;
+
+ if(sim){
+
+  if(ultimaPizza.tamanho === "broto"){
+
+   ultimaPizza.precoBorda = 7.90;
+
+  }else{
+
+   ultimaPizza.precoBorda = 11.90;
+
+  }
+
+ }else{
+
+  ultimaPizza.precoBorda = 0;
+
+ }
 
  atualizarCarrinhoFlutuante();
 
@@ -262,7 +394,6 @@ function selecionarBorda(sim){
  mostrarEtapa(5);
 
 }
-
 
 function carregarBebidas(){
 
@@ -400,51 +531,37 @@ function atualizarCarrinhoFlutuante(){
 
  if(!carrinho) return;
 
-const subtotal =
-totalPizzas() +
-totalBebidas();
+ const subtotal =
+ totalPizzas() +
+ totalBebidas();
 
- if(subtotal<=0){
+ if(subtotal <= 0){
 
-  carrinho.style.display="none";
+  carrinho.style.display = "none";
   return;
 
  }
 
- carrinho.style.display="flex";
+ carrinho.style.display = "flex";
 
  let resumo = "";
 
- pedido.pizzas.forEach((pizza,index)=>{
+resumo += `🍕 ${pedido.pizzas.length} Pizza(s)`;
 
- resumo += `
- <br>🍕 Pizza ${index+1}
- <br>${pizza.sabor}
- `;
+let qtdBebidas = 0;
 
- if(pizza.borda){
-
-  resumo += `
-  <br> Borda Catupiry
-  `;
-
- }
-
+pedido.bebidas.forEach(item=>{
+ qtdBebidas += item.qtd;
 });
 
- 
- pedido.bebidas.forEach(item=>{
-
-  resumo += `<br> ${item.nome} (${item.qtd}x)`;
-
- });
+resumo += `<br>🥤 ${qtdBebidas} Bebida(s)`;
 
  document.getElementById("resumoFlutuante")
  .innerHTML = resumo;
 
  document.getElementById("totalFlutuante")
  .innerHTML =
- "R$ "+subtotal.toFixed(2);
+ "R$ " + subtotal.toFixed(2);
 
 }
 
@@ -458,16 +575,26 @@ function mostrarCarrinho(){
   subtotalPizzas += pizza.preco;
 
   if(pizza.borda){
-   subtotalPizzas += 11.90;
+   subtotalPizzas += pizza.precoBorda;
   }
 
   pizzasTexto += `
-  <p>
-   <strong>Pizza ${index + 1}:</strong>
-   ${pizza.sabor}
-   ${pizza.borda ? " + Borda Catupiry" : ""}
-  </p>
-  `;
+<p>
+ <strong>Pizza ${index + 1}:</strong><br>
+
+ ${pizza.sabor}<br>
+
+ <small>
+ ${pizza.tamanho === "broto"
+ ? "🍕 Broto - 4 pedaços"
+ : "🍕 Família - 8 pedaços"}
+ </small>
+
+ ${pizza.borda
+ ? "<br> Borda Catupiry"
+ : ""}
+</p>
+`;
 
  });
 
@@ -515,28 +642,75 @@ function mostrarCarrinho(){
 
 function calcularFrete(){
 
+ const bairro =
+ document.getElementById("bairro")
+ .value
+ .trim()
+ .toLowerCase();
+
  const subtotal =
  totalPizzas() + totalBebidas();
 
- pedido.frete = 0;
+ if(fretes[bairro] === undefined){
 
- pedido.total =
- subtotal + pedido.frete;
+  alert(
+   "Bairro não cadastrado. Envie seu pedido e calcularemos o frete no WhatsApp."
+  );
+
+  pedido.frete = null;
+
+  pedido.total = subtotal;
+
+ }else{
+
+  pedido.frete =
+  fretes[bairro];
+
+  pedido.total =
+  subtotal + pedido.frete;
+
+ }
 
  document.getElementById("resumoFinal")
-.innerHTML = `
+ .innerHTML = `
 
-<p><strong>Subtotal:</strong>
-R$ ${subtotal.toFixed(2)}
-</p>
+ <p>
+ <strong>Subtotal:</strong>
+ R$ ${subtotal.toFixed(2)}
+ </p>
 
-<hr>
+ <p>
+ <strong>Frete:</strong>
+ ${
+  pedido.frete === null
+  ? "A calcular"
+  : "R$ " + pedido.frete.toFixed(2)
+ }
+ </p>
 
-<h2>
-Total: R$ ${pedido.total.toFixed(2)}
-</h2>
+ <hr>
 
-`;
+ <h2>
+ Total: R$ ${pedido.total.toFixed(2)}
+ </h2>
+
+ `;
+
+const btnWhatsapp =
+document.querySelector(".whatsapp");
+
+if(pedido.frete === null){
+
+ btnWhatsapp.innerHTML =
+ "📲 Enviar Pedido no WhatsApp<br>e Solicitar Valor do Frete";
+
+}else{
+
+ btnWhatsapp.innerHTML =
+ "📲 Enviar Pedido no WhatsApp";
+
+}
+
  mostrarEtapa(9);
 
 }
@@ -569,14 +743,19 @@ document.getElementById("obs").value;
  pedido.pizzas.forEach((pizza,index)=>{
 
   pizzasTexto +=
-  ` Pizza ${index+1}: ${pizza.sabor}`;
+` Pizza ${index+1}: ${pizza.sabor}`;
 
-  if(pizza.borda){
+pizzasTexto +=
+` (${pizza.tamanho === "broto"
+ ? "Broto - 4 pedaços"
+ : "Grande - 8 pedaços"})`;
 
-   pizzasTexto +=
-   " + Borda Catupiry";
+if(pizza.borda){
 
-  }
+ pizzasTexto +=
+ " + Borda Catupiry";
+
+}
 
   pizzasTexto += "\n";
 
@@ -591,9 +770,14 @@ document.getElementById("obs").value;
 
  });
 
+const codigoPedido =
+Date.now()
+
  const msg = `
 
 NOVO PEDIDO - FORNO DA CASA
+
+Pedido Nº: ${codigoPedido}
 
 Nome: ${nome}
 
@@ -614,14 +798,48 @@ ${pizzasTexto}
 ${bebidasTexto}
 
 --------------------------------
-
+Frete: ${
+ pedido.frete === null
+ ? "A calcular"
+ : "R$ " + pedido.frete.toFixed(2)
+}
+--------------------------------
 Total: R$ ${pedido.total.toFixed(2)}
 
 Observações:
 ${obs}
 
 `;
- window.open(
+const dadosPedido = {
+
+ pedido: codigoPedido,
+
+ nome: nome,
+
+ total:
+ pedido.total.toFixed(2)
+
+};
+
+fetch(URL_PLANILHA, {
+
+ method: "POST",
+
+ body: JSON.stringify(dadosPedido)
+
+})
+.then(() => {
+
+ console.log("Pedido salvo");
+
+})
+.catch((erro) => {
+
+ console.error(erro);
+
+});
+ 
+window.open(
  `https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`,
  "_blank"
  );
@@ -636,21 +854,32 @@ function mostrarConfirmacao(){
 
  pedido.pizzas.forEach((pizza,index)=>{
 
-  html += `
-   <p>
-   <strong>Pizza ${index+1}</strong><br>
-   ${pizza.sabor}
-   </p>
-  `;
+ html += `
+ <p>
+ <strong>Pizza ${index+1}</strong><br>
+
+ ${pizza.sabor}
+ - R$ ${pizza.preco.toFixed(2)}<br>
+
+ <small>
+ ${pizza.tamanho === "broto"
+ ? "🍕 Broto - 4 pedaços"
+ : "🍕 Família - 8 pedaços"}
+ </small>
+
+ </p>
+`;
 
   total += pizza.preco;
 
   if(pizza.borda){
 
    html += `
-   <p> Borda Catupiry</p>
-   `;
-
+<p>
+ Borda Catupiry
+- R$ ${pizza.precoBorda.toFixed(2)}
+</p>
+`;
    total += pizza.precoBorda;
 
   }
@@ -665,11 +894,12 @@ function mostrarConfirmacao(){
 
   pedido.bebidas.forEach(b=>{
 
-   html += `
-    <p>
-     ${b.nome} x${b.qtd}
-    </p>
-   `;
+html += `
+ <p>
+   ${b.nome} x${b.qtd}
+  - R$ ${(b.preco * b.qtd).toFixed(2)}
+ </p>
+`;
 
    total += b.preco * b.qtd;
 
@@ -703,6 +933,52 @@ function reiniciarPedido(){
  atualizarCarrinhoFlutuante();
 
  mostrarEtapa(2);
+
+}
+
+function verificarFrete(){
+
+ const bairro =
+ document.getElementById("bairro")
+ .value
+ .trim()
+ .toLowerCase();
+
+ const info =
+ document.getElementById("infoFrete");
+
+ if(!info) return;
+
+ if(!bairro){
+
+  info.style.display = "none";
+  return;
+
+ }
+
+ if(fretes[bairro] === undefined){
+
+  info.style.display = "block";
+  info.innerHTML =
+  "❌ Bairro não cadastrado no sistema (Clique em CONFIRMAR DADOS para calcularmos pelo WhatsApp)";
+
+  return;
+
+ }
+
+ if(fretes[bairro] === 0){
+
+  info.style.display = "block";
+  info.innerHTML =
+  "✅ Frete Grátis";
+
+ }else{
+
+  info.style.display = "block";
+  info.innerHTML =
+  `🚚 Frete: R$ ${fretes[bairro].toFixed(2)}`;
+
+ }
 
 }
 
