@@ -1,1024 +1,319 @@
-const URL_PLANILHA =
-"https://script.google.com/macros/s/AKfycbyL_9zGprrNTmFsU37u9VpWNivA9czDKB7rxdIe2g46InBtCsORu__fRj5Cp1JIaMWu/exec";
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-const whatsapp = "5531971268087";
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-const fretes = {
+<title>Pizzaria Forno da Casa</title>
 
- "mata grande": 0,
- "vale das palmeiras 2": 0,
-"vale das palmeiras": 0,
-"iporanga": 0,
-"iporanga 2": 0,
-"são cristovão": 0,
-"sao cristovao": 0,
-"santo antonio": 0,
-"santa rosa": 0,
-"henrique nery": 5,
-"são jorge": 0,
-"sao jorge": 0,
-"são dimas": 0,
-"sao dimas": 0,
-"catarina": 0,
-"padre teodoro": 5,
-"padre teodoro 2": 5,
-"padre teodoro 1": 5,
-"varzea": 0,
-"várzea": 0,
-"novo horizonte": 0,
-"colorado": 3,
-"flórida": 0,
-"florida": 0,
-"são geraldo": 0,
-"sao geraldo": 0,
-"dona dora": 0,
-"donadora": 0,
-"progresso": 5,
-"morro do claro": 5,
-"industrias": 7,
-"bairro das industrias": 7,
-"centro": 5,
-"vapabuçu": 6,
-"canaa": 5,
-"jardim arizona": 7,
-"mangabeiras": 8,
-"mangabeira": 8,
-"boa vista": 5,
-"fatima": 5,
-"brasilia": 8,
-"nossa senhora do carmo": 5,
-"carmo": 5,
-"recanto do cedro": 0,
-"piedade": 0,
-"morro do claro": 5,
-"aeroporto industrial": 10,
-"aeroporto": 10,
-"jardim universitario": 3,
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!--AVISO DE RECESSO -->
+
+<!--
+<div id="avisoFerias" class="aviso-ferias">
+    <div class="aviso-conteudo">
+
+        <img src="logo.jpeg" alt="Forno da Casa" class="logo-ferias">
+
+        
+        <h2>🍕 ESTAMOS EM UMA BREVE PAUSA</h2>
+
+        <p>
+            Entre os dias <strong>14/08 e 18/08</strong>,
+            estaremos fechados para um período de descanso e melhorias.
+        </p>
+
+        <p>
+            Em breve estaremos de volta preparando suas pizzas favoritas com todo o carinho de sempre.
+</p>
+
+        <p>
+
+ Agradecemos sua preferência e compreensão.❤️
+        </p>
+
+    </div>
+</div>
+-->
 
 
+<!-- ETAPA 1 -->
 
+<section id="etapa1" class="tela home">
 
-};
+<img src="pizza-home.jpeg" class="fundo-home" alt="Pizza">
 
-let tamanhoAtual = "grande";
+<div class="overlay">
 
-const pizzas = [
-{
- name:"Forno da Casa (A MAIS PEDIDA)",
- preco:74.90,
- precoBroto:49.90,
- descricao:"Molho, muçarela, presunto, frango, bacon, catupiry, cebola, pimentão, azeitona e orégano"
-},
-{
- name:"Costela",
- preco:74.90,
- precoBroto:49.90,
- descricao:"Molho, muçarela, costela bovina desfiada, cebola caramelizada, catupiry, pimentão e cebolinha "
-},
-{
- name:"A Moda",
- preco:54.90,
- precoBroto:34.90,
- descricao:"Molho, muçarela, presunto, calabresa, cebola, tomate, pimentão, azeitona e orégano"
-},
-{
- name:"Calabresa",
- preco:54.90,
- precoBroto:34.90,
- descricao:"Molho, muçarela, calabresa, cebola, azeitona e orégano"
-},
-{
- name:"Mussarela",
- preco:54.90,
- precoBroto:34.90,
- descricao:"Molho, muçarela, azeitona e orégano"
-},
-{
- name:"Portuguesa",
- preco:57.90,
- precoBroto:39.90,
- descricao:"Molho, muçarela, presunto, ovo, cebola, bacon, azeitona e orégano"
-},
-{
- name:"Frango com Catupiry",
- preco:64.90,
- precoBroto:39.90,
- descricao:"Molho, muçarela, frango, catupiry, azeitona e orégano"
-},
-{
- name:"4 Queijos",
- preco:64.90,
- precoBroto:39.90,
- descricao:"Molho, muçarela, provolone, parmesão, catupiry, azeitona e orégano"
-},
-{
- name:"Caipira",
- preco:57.90,
- precoBroto:39.90,
- descricao:"Molho, muçarela, frango, bacon, milho, cebola, azeitona e orégano"
-},
-{
- name:"Lombinho",
- preco:64.90,
- precoBroto:39.90,
- descricao:"Molho, muçarela, lombinho, catupiry, cebola, azeitona e orégano"
-},
-{
- name:"Marguerita",
- preco:44.90,
- precoBroto:29.90,
- descricao:"Molho, muçarela, manjericão, tomate, azeitona e orégano"
-},
-{
- name:"Palmito",
- preco:64.90,
- precoBroto:39.90,
- descricao:"Molho, muçarela, palmito, pimentão, cebola, tomate, azeitona e orégano"
-}
-];
+<img src="logo.jpeg" class="logo-home" alt="Logo">
 
-const bebidas = [
- {name:"Coca-Cola 2L",preco:13.90},
- {name:"Coca-Cola Zero 2L",preco:13.90},
- {name:"Guaraná Antarctica 2L",preco:12.90},
-{name:"Mate Couro 1L",preco:7.90}
-];
+<h1>Pizzaria Forno da Casa</h1>
 
-let pedido = {
- pizzas:[],
- bebidas:[],
- frete:0,
- total:0
-};
-
-function mostrarEtapa(numero){
-
- document.querySelectorAll(".tela").forEach(tela=>{
-  tela.style.display = "none";
- });
-
- const etapa =
- document.getElementById("etapa" + numero);
-
- if(!etapa) return;
-
- if(numero === 1){
-
-  etapa.style.display = "flex";
-
- }else{
-
-  etapa.style.display = "block";
-
- }
-
- const carrinho =
- document.getElementById("carrinhoFlutuante");
-
- if(carrinho){
-
-  if(numero >= 7){
-
-   carrinho.style.display = "none";
-
-  }else{
-
-   atualizarCarrinhoFlutuante();
-
-  }
-
- }
-
- window.scrollTo(0,0);
-
-}
-function mostrarEtapaCustom(id){
-
- document.querySelectorAll(".tela").forEach(tela=>{
-  tela.style.display="none";
- });
-
- document.getElementById(id).style.display="block";
-
-}
-
-function selecionarTipo(tipo){
-
- if(tipo === "grande"){
-
-  tamanhoAtual = "grande";
-  mostrarEtapaInteira();
-
- }
-
- else if(tipo === "broto"){
-
-  tamanhoAtual = "broto";
-  mostrarEtapaInteira();
-
- }
-
- else if(tipo === "meio"){
-
-  tamanhoAtual = "grande";
-  mostrarEtapaMeio();
-
- }
-
-}
-
-function mostrarEtapaInteira(){
-
- mostrarEtapaCustom("etapa3Inteira");
-
- const lista =
- document.getElementById("listaSaboresInteira");
-
- lista.innerHTML="";
-
- pizzas.forEach(pizza=>{
-
-const preco =
- tamanhoAtual === "broto"
- ? pizza.precoBroto
- : pizza.preco;
-
-  lista.innerHTML += `
-  <div class="sabor">
-
-   <div>
-
-    <strong>${pizza.name}</strong>
-
-    <p class="descricao-pizza">
-        ${pizza.descricao}
-    </p>
-
-    <span class="preco">
-        R$ ${preco.toFixed(2)}
-    </span>
-
+<div id="statusLoja" class="status">
+Carregando...
 </div>
 
-<button onclick="escolherPizza('${pizza.name}',${preco})">
-    +
+<p>📍 Rua Maria Alves Cotta</p>
+
+<p>Mata Grande • Sete Lagoas - MG</p>
+
+<p>🕒 Terça a Domingo • 18h às 23h</p>
+
+<button class="btn-home" onclick="mostrarEtapa(2)">
+🍕 Fazer Pedido
 </button>
 
 </div>
-`;
 
-});
+</section>
 
-}
-
-function mostrarEtapaMeio(){
-
- mostrarEtapaCustom("etapa3Meio");
-
- const sabor1 =
- document.getElementById("sabor1");
-
- const sabor2 =
- document.getElementById("sabor2");
-
- sabor1.innerHTML="";
- sabor2.innerHTML="";
-
- pizzas.forEach(pizza=>{
-
-  sabor1.innerHTML +=
-  `<option>${pizza.name}</option>`;
-
-  sabor2.innerHTML +=
-  `<option>${pizza.name}</option>`;
-
- });
-
-}
-
-function escolherPizza(nome,preco){
-
- pedido.pizzas.push({
-  sabor:nome,
-  preco:preco,
-  tamanho:tamanhoAtual,
-  borda:false,
-  precoBorda:0
- });
-
- mostrarEtapa(4);
-
- const valorBorda =
- document.getElementById("valorBorda");
-
- if(valorBorda){
-
-    if(tamanhoAtual === "broto"){
-
-        valorBorda.innerHTML =
-        "R$ 7,90";
-
-    }else{
-
-        valorBorda.innerHTML =
-        "R$ 11,90";
-
-    }
-
- }
-
-}
-
-function confirmarMeioMeio(){
-
- const s1 =
- document.getElementById("sabor1").value;
-
- const s2 =
- document.getElementById("sabor2").value;
-
- if(s1===s2){
-
-  alert("Escolha dois sabores diferentes.");
-  return;
-
- }
-
- const p1 =
- pizzas.find(p=>p.name===s1);
-
- const p2 =
- pizzas.find(p=>p.name===s2);
-
- pedido.pizzas.push({
- sabor:`Meio a Meio: ${s1} / ${s2}`,
- preco:(p1.preco + p2.preco)/2,
- borda:false,
- precoBorda:0
-});
-
- atualizarCarrinhoFlutuante();
-
- mostrarEtapa(4);
-
-}
-
-function selecionarBorda(sim){
-
- let ultimaPizza =
- pedido.pizzas[pedido.pizzas.length - 1];
-
- ultimaPizza.borda = sim;
-
- if(sim){
-
-  if(ultimaPizza.tamanho === "broto"){
-
-   ultimaPizza.precoBorda = 7.90;
-
-  }else{
-
-   ultimaPizza.precoBorda = 11.90;
-
-  }
-
- }else{
-
-  ultimaPizza.precoBorda = 0;
-
- }
-
- atualizarCarrinhoFlutuante();
-
- carregarBebidas();
-
- mostrarEtapa(5);
-
-}
-
-function carregarBebidas(){
-
- const lista =
- document.getElementById("listaBebidas");
-
- lista.innerHTML="";
-
- bebidas.forEach(item=>{
-
-  const encontrada =
-  pedido.bebidas.find(
-   b=>b.nome===item.name
-  );
-
-  const qtd =
-  encontrada ? encontrada.qtd : 0;
-
-  lista.innerHTML += `
-  <div class="bebida">
-
-   <div>
-    <strong>${item.name}</strong>
-    <br>
-    <span class="preco">
-    R$ ${item.preco.toFixed(2)}
-    </span>
-   </div>
-
-   <div style="display:flex;gap:10px;align-items:center">
-
-    <button onclick="removerBebida('${item.name}')">
-    -
-    </button>
-
-    <strong>${qtd}</strong>
-
-    <button onclick="adicionarBebida('${item.name}',${item.preco})">
-    +
-    </button>
-
-   </div>
-
+<!-- INDICADOR DE PROGRESSO (fora da etapa 1) -->
+<div id="progresso" class="progresso">
+  <div class="progresso-texto"></div>
+  <div class="progresso-barra">
+    <div id="progressoFill" class="progresso-fill"></div>
   </div>
-  `;
+</div>
 
- });
+<!-- ETAPA 2 -->
 
-}
+<section id="etapa2" class="tela">
 
-function adicionarBebida(nome,preco){
+<h2>Como deseja montar sua pizza?</h2>
 
- let bebida =
- pedido.bebidas.find(
-  b=>b.nome===nome
- );
+<div id="atalhoRepetir" class="atalho-repetir" style="display:none">
+  <button class="opcao btn-repetir" onclick="repetirUltimaPizza()">
+    🔁 Adicionar pizza igual à anterior
+  </button>
+</div>
 
- if(bebida){
+<div class="opcoes">
 
-  bebida.qtd++;
+<button class="opcao" onclick="selecionarTipo('familia')">
+🍕 Pizza Inteira Família - 8 Pedaços - 35cm
+</button>
 
- }else{
+<button class="opcao" onclick="selecionarTipo('meio')">
+🍕🍕 Pizza Dois Sabores Família - 8 Pedaços - 35cm
+</button>
 
-  pedido.bebidas.push({
-   nome:nome,
-   preco:preco,
-   qtd:1
-  });
+<button class="opcao" onclick="selecionarTipo('broto')">
+🍕 Pizza Inteira Broto - 4 Pedaços - 25cm
+</button>
 
- }
+</div>
 
- carregarBebidas();
- atualizarCarrinhoFlutuante();
+</section>
 
-}
+<!-- ETAPA 3A -->
 
-function removerBebida(nome){
+<section id="etapa3Inteira" class="tela">
 
- let bebida =
- pedido.bebidas.find(
-  b=>b.nome===nome
- );
+<h2>Escolha o sabor</h2>
 
- if(!bebida) return;
+<div id="listaSaboresInteira"></div>
+<button class="continuar" onclick="mostrarEtapa(2)">
+⬅ Voltar 
+</button>
 
- bebida.qtd--;
+</section>
 
- if(bebida.qtd<=0){
+<!-- ETAPA 3B -->
 
-  pedido.bebidas =
-  pedido.bebidas.filter(
-   b=>b.nome!==nome
-  );
+<section id="etapa3Meio" class="tela">
 
- }
+<h2>Pizza Dois Sabores</h2>
 
- carregarBebidas();
- atualizarCarrinhoFlutuante();
+<label>Primeiro sabor</label>
+<select id="sabor1"></select>
 
-}
+<label>Segundo sabor</label>
+<select id="sabor2"></select>
 
-function totalBebidas(){
+<button class="continuar btn-verde" onclick="confirmarMeioMeio()">
+Continuar
+</button>
+<button class="continuar" onclick="mostrarEtapa(2)">
+⬅ Voltar
+</button>
 
- let total = 0;
+</section>
 
- pedido.bebidas.forEach(item=>{
+<!-- ETAPA 4: BORDA + BEBIDA (combinadas) -->
 
-  total += item.preco * item.qtd;
+<section id="etapa4" class="tela">
 
- });
+    <h2>Deseja adicionar borda?</h2>
 
- return total;
+    <div class="opcoes">
 
-}
+        <button class="opcao" onclick="selecionarBorda(false)">
+            Borda Tradicional
+        </button>
 
-function totalPizzas(){
+        <button
+            class="opcao"
+            onclick="selecionarBorda('catupiry')"
+        >
+            Borda de Catupiry
+            <br>
+            <small id="valorBordaCatupiry">
+                Acréscimo: R$ 11,90
+            </small>
+        </button>
 
- let total = 0;
+        <button
+            class="opcao"
+            onclick="selecionarBorda('cheddar')"
+        >
+            Borda de Cheddar
+            <br>
+            <small id="valorBordaCheddar">
+                Acréscimo: R$ 11,90
+            </small>
+        </button>
 
- pedido.pizzas.forEach(pizza=>{
+    </div>
 
-  total += pizza.preco;
-  total += pizza.precoBorda;
+    <h2 class="titulo-bebida">Deseja adicionar bebida?</h2>
 
- });
+    <div id="listaBebidas"></div>
 
- return total;
+    <button class="continuar" onclick="mostrarCarrinho()">
+    Continuar
+    </button>
 
-}
+</section>
 
-function atualizarCarrinhoFlutuante(){
+<!-- ETAPA 6 -->
 
- const carrinho =
- document.getElementById("carrinhoFlutuante");
+<section id="etapa6" class="tela">
 
- if(!carrinho) return;
+<h2>Seu Pedido</h2>
 
- const subtotal =
- totalPizzas() +
- totalBebidas();
+<div id="resumoPedido"></div>
 
- if(subtotal <= 0){
+<div class="botoes">
 
-  carrinho.style.display = "none";
-  return;
+<button onclick="mostrarEtapa(2)">
+➕ Adicionar Outra Pizza
+</button>
 
- }
+<button onclick="mostrarConfirmacao()">
+Continuar
+</button>
 
- carrinho.style.display = "flex";
+</div>
 
- let resumo = "";
+</section>
 
-resumo += `🍕 ${pedido.pizzas.length} Pizza(s)`;
 
-let qtdBebidas = 0;
 
-pedido.bebidas.forEach(item=>{
- qtdBebidas += item.qtd;
-});
+<section id="etapa7" class="tela">
 
-resumo += `<br>🥤 ${qtdBebidas} Bebida(s)`;
+<h2>Confirme seu Pedido</h2>
 
- document.getElementById("resumoFlutuante")
- .innerHTML = resumo;
+<div id="resumoConfirmacao"></div>
 
- document.getElementById("totalFlutuante")
- .innerHTML =
- "R$ " + subtotal.toFixed(2);
+<div class="botoes">
 
-}
+<button onclick="reiniciarPedido()">
+❌ Corrigir Pedido
+</button>
 
-function mostrarCarrinho(){
+<button onclick="mostrarEtapa(8)">
+📍 Continuar para Endereço
+</button>
 
- let pizzasTexto = "";
- let subtotalPizzas = 0;
+</div>
 
- pedido.pizzas.forEach((pizza,index)=>{
+</section>
 
-  subtotalPizzas += pizza.preco;
 
-  if(pizza.borda){
-   subtotalPizzas += pizza.precoBorda;
-  }
 
-  pizzasTexto += `
-<p>
- <strong>Pizza ${index + 1}:</strong><br>
+<!-- ETAPA 8 -->
 
- ${pizza.sabor}<br>
+<section id="etapa8" class="tela">
 
- <small>
- ${pizza.tamanho === "broto"
- ? "🍕 Broto - 4 pedaços"
- : "🍕 Família - 8 pedaços"}
- </small>
+<h2>Dados para Entrega</h2>
 
- ${pizza.borda
- ? "<br> Borda Catupiry"
- : ""}
-</p>
-`;
+<input type="text" id="nome" placeholder="Nome">
 
- });
+<input type="text" id="telefone" placeholder="Telefone">
 
- let bebidasTexto = "";
- let subtotalBebidas = 0;
+<input type="text" id="rua" placeholder="Rua">
 
- pedido.bebidas.forEach(item=>{
+<input type="text" id="numero" placeholder="Número">
 
-  bebidasTexto += `
-  ${item.nome} (${item.qtd}x)<br>
-  `;
+<input type="text" id="complemento" placeholder="Complemento">
+<input
+type="text"
+id="bairro"
+placeholder="Bairro"
+oninput="verificarFrete(); mostrarSugestoesBairro();">
 
-  subtotalBebidas += item.preco * item.qtd;
+<div id="sugestoesBairro"></div>
+<div id="infoFrete"></div>
 
- });
+<select id="formaPagamento" required>
+    <option value="" selected disabled>
+        Forma de Pagamento
+    </option>
+    <option value="Dinheiro">💵 Dinheiro</option>
+    <option value="Pix">📱 Pix</option>
+    <option value="Cartão de Crédito">💳 Cartão de Crédito</option>
+    <option value="Cartão de Débito">💳 Cartão de Débito</option>
+</select>
 
- if(bebidasTexto === ""){
-  bebidasTexto = "Nenhuma";
- }
+<textarea id="obs" placeholder="Observações"></textarea>
 
- const subtotal =
- subtotalPizzas + subtotalBebidas;
+<button class="btn-frete" onclick="calcularFrete()">
+Confirmar Dados
+</button>
 
- document.getElementById("resumoPedido")
- .innerHTML = `
+</section>
 
- ${pizzasTexto}
+<!-- ETAPA 9 -->
 
- <p>
- <strong>Bebidas:</strong><br>
- ${bebidasTexto}
- </p>
+<section id="etapa9" class="tela">
 
- <hr>
+<h2>Resumo Final</h2>
 
- <h3>
- Subtotal: R$ ${subtotal.toFixed(2)}
- </h3>
+<div id="resumoFinal"></div>
 
- `;
+<button class="whatsapp" onclick="finalizarPedido()">
+📲 Enviar Pedido no WhatsApp<br>
+e Solicitar Valor do Frete
+</button>
+</section>
 
- mostrarEtapa(6);
+<!-- CARRINHO FLUTUANTE -->
 
-}
+<div id="carrinhoFlutuante" class="carrinho-flutuante">
 
-function calcularFrete(){
+    <div class="carrinho-info">
 
- const bairro =
- document.getElementById("bairro")
- .value
- .trim()
- .toLowerCase();
+        <div id="resumoFlutuante">
+            Nenhum item selecionado
+        </div>
 
- const subtotal =
- totalPizzas() + totalBebidas();
+        <div id="totalFlutuante">
+            R$ 0,00
+        </div>
 
- if(fretes[bairro] === undefined){
+    </div>
 
-  alert(
-   "Bairro não cadastrado. Envie seu pedido e calcularemos o frete no WhatsApp."
-  );
+</div>
 
-  pedido.frete = null;
+<script src="script.js"></script>
 
-  pedido.total = subtotal;
+</body>
 
- }else{
-
-  pedido.frete =
-  fretes[bairro];
-
-  pedido.total =
-  subtotal + pedido.frete;
-
- }
-
- document.getElementById("resumoFinal")
- .innerHTML = `
-
- <p>
- <strong>Subtotal:</strong>
- R$ ${subtotal.toFixed(2)}
- </p>
-
- <p>
- <strong>Frete:</strong>
- ${
-  pedido.frete === null
-  ? "A calcular"
-  : "R$ " + pedido.frete.toFixed(2)
- }
- </p>
-
- <hr>
-
- <h2>
- Total: R$ ${pedido.total.toFixed(2)}
- </h2>
-
- `;
-
-const btnWhatsapp =
-document.querySelector(".whatsapp");
-
-if(pedido.frete === null){
-
- btnWhatsapp.innerHTML =
- "📲 Enviar Pedido no WhatsApp<br>e Solicitar Valor do Frete";
-
-}else{
-
- btnWhatsapp.innerHTML =
- "📲 Enviar Pedido no WhatsApp";
-
-}
-
- mostrarEtapa(9);
-
-}
-
-function finalizarPedido(){
-
- const nome =
- document.getElementById("nome").value;
-
- const telefone =
- document.getElementById("telefone").value;
-
- const bairro =
- document.getElementById("bairro").value;
-
- const rua =
- document.getElementById("rua").value;
-
- const numero =
- document.getElementById("numero").value;
-
-const complemento =
-document.getElementById("complemento").value;
-
-const obs =
-document.getElementById("obs").value;
-
- let pizzasTexto = "";
-
- pedido.pizzas.forEach((pizza,index)=>{
-
-  pizzasTexto +=
-` Pizza ${index+1}: ${pizza.sabor}`;
-
-pizzasTexto +=
-` (${pizza.tamanho === "broto"
- ? "Broto - 4 pedaços"
- : "Grande - 8 pedaços"})`;
-
-if(pizza.borda){
-
- pizzasTexto +=
- " + Borda Catupiry";
-
-}
-
-  pizzasTexto += "\n";
-
- });
-
- let bebidasTexto = "";
-
- pedido.bebidas.forEach(item=>{
-
-  bebidasTexto +=
-  ` ${item.nome} (${item.qtd}x)\n`;
-
- });
-
-const codigoPedido =
-Date.now()
-
- const msg = `
-
-NOVO PEDIDO - FORNO DA CASA
-
-Pedido Nº: ${codigoPedido}
-
-Nome: ${nome}
-
-Telefone: ${telefone}
-
-Bairro: ${bairro}
-
-Rua: ${rua}
-
-Número: ${numero}
-
-Complemento: ${complemento}
-
---------------------------------
-
-${pizzasTexto}
-
-${bebidasTexto}
-
---------------------------------
-Frete: ${
- pedido.frete === null
- ? "A calcular"
- : "R$ " + pedido.frete.toFixed(2)
-}
---------------------------------
-Total: R$ ${pedido.total.toFixed(2)}
-
-Observações:
-${obs}
-
-`;
-const dadosPedido = {
-
- pedido: codigoPedido,
-
- nome: nome,
-
- total:
- pedido.total.toFixed(2)
-
-};
-
-fetch(URL_PLANILHA, {
-
- method: "POST",
-
- body: JSON.stringify(dadosPedido)
-
-})
-.then(() => {
-
- console.log("Pedido salvo");
-
-})
-.catch((erro) => {
-
- console.error(erro);
-
-});
- 
-window.open(
- `https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`,
- "_blank"
- );
-
-}
-
-function mostrarConfirmacao(){
-
- let html = "";
-
- let total = 0;
-
- pedido.pizzas.forEach((pizza,index)=>{
-
- html += `
- <p>
- <strong>Pizza ${index+1}</strong><br>
-
- ${pizza.sabor}
- - R$ ${pizza.preco.toFixed(2)}<br>
-
- <small>
- ${pizza.tamanho === "broto"
- ? "🍕 Broto - 4 pedaços"
- : "🍕 Família - 8 pedaços"}
- </small>
-
- </p>
-`;
-
-  total += pizza.preco;
-
-  if(pizza.borda){
-
-   html += `
-<p>
- Borda Catupiry
-- R$ ${pizza.precoBorda.toFixed(2)}
-</p>
-`;
-   total += pizza.precoBorda;
-
-  }
-
-  html += "<hr>";
-
- });
-
- if(pedido.bebidas.length){
-
-  html += "<h3>Bebidas</h3>";
-
-  pedido.bebidas.forEach(b=>{
-
-html += `
- <p>
-   ${b.nome} x${b.qtd}
-  - R$ ${(b.preco * b.qtd).toFixed(2)}
- </p>
-`;
-
-   total += b.preco * b.qtd;
-
-  });
-
- }
-
- html += `
- <h2>
- Total: R$ ${total.toFixed(2)}
- </h2>
- `;
-
- document.getElementById(
-  "resumoConfirmacao"
- ).innerHTML = html;
-
- mostrarEtapa(7);
-
-}
-
-function reiniciarPedido(){
-
- pedido = {
-  pizzas:[],
-  bebidas:[],
-  frete:0,
-  total:0
- };
-
- atualizarCarrinhoFlutuante();
-
- mostrarEtapa(2);
-
-}
-
-function verificarFrete(){
-
- const bairro =
- document.getElementById("bairro")
- .value
- .trim()
- .toLowerCase();
-
- const info =
- document.getElementById("infoFrete");
-
- if(!info) return;
-
- if(!bairro){
-
-  info.style.display = "none";
-  return;
-
- }
-
- if(fretes[bairro] === undefined){
-
-  info.style.display = "block";
-  info.innerHTML =
-  "❌ Bairro não cadastrado no sistema (Clique em CONFIRMAR DADOS para calcularmos pelo WhatsApp)";
-
-  return;
-
- }
-
- if(fretes[bairro] === 0){
-
-  info.style.display = "block";
-  info.innerHTML =
-  "✅ Frete Grátis";
-
- }else{
-
-  info.style.display = "block";
-  info.innerHTML =
-  `🚚 Frete: R$ ${fretes[bairro].toFixed(2)}`;
-
- }
-
-}
-
-function atualizarStatusLoja(){
-
- const agora = new Date();
- const dia = agora.getDay();
- const hora = agora.getHours();
-
- let aberta = false;
-
- if((dia>=2 && dia<=6) || dia===0){
-
-  if(hora>=18 && hora<23){
-
-   aberta=true;
-
-  }
-
- }
-
- const status =
- document.getElementById("statusLoja");
-
- if(!status) return;
-
- if(aberta){
-
-  status.innerHTML="🟢 Aberto Agora";
-  status.className="status aberto";
-
- }else{
-
-  status.innerHTML="🔴 Fechado";
-  status.className="status fechado";
-
- }
-
-}
-
-atualizarStatusLoja();
-mostrarEtapa(1);
+</html>
