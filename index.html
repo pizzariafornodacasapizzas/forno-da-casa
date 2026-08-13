@@ -14,6 +14,36 @@
 
 <body>
 
+<!--AVISO DE RECESSO -->
+
+<!--
+<div id="avisoFerias" class="aviso-ferias">
+    <div class="aviso-conteudo">
+
+        <img src="logo.jpeg" alt="Forno da Casa" class="logo-ferias">
+
+        
+        <h2>🍕 ESTAMOS EM UMA BREVE PAUSA</h2>
+
+        <p>
+            Entre os dias <strong>14/08 e 18/08</strong>,
+            estaremos fechados para um período de descanso e melhorias.
+        </p>
+
+        <p>
+            Em breve estaremos de volta preparando suas pizzas favoritas com todo o carinho de sempre.
+</p>
+
+        <p>
+
+ Agradecemos sua preferência e compreensão.❤️
+        </p>
+
+    </div>
+</div>
+-->
+
+
 <!-- ETAPA 1 -->
 
 <section id="etapa1" class="tela home">
@@ -44,15 +74,29 @@ Carregando...
 
 </section>
 
+<!-- INDICADOR DE PROGRESSO (fora da etapa 1) -->
+<div id="progresso" class="progresso">
+  <div class="progresso-texto"></div>
+  <div class="progresso-barra">
+    <div id="progressoFill" class="progresso-fill"></div>
+  </div>
+</div>
+
 <!-- ETAPA 2 -->
 
 <section id="etapa2" class="tela">
 
 <h2>Como deseja montar sua pizza?</h2>
 
+<div id="atalhoRepetir" class="atalho-repetir" style="display:none">
+  <button class="opcao btn-repetir" onclick="repetirUltimaPizza()">
+    🔁 Adicionar pizza igual à anterior
+  </button>
+</div>
+
 <div class="opcoes">
 
-<button class="opcao" onclick="selecionarTipo('grande')">
+<button class="opcao" onclick="selecionarTipo('familia')">
 🍕 Pizza Inteira Família - 8 Pedaços - 35cm
 </button>
 
@@ -102,45 +146,49 @@ Continuar
 
 </section>
 
-<!-- ETAPA 4 -->
+<!-- ETAPA 4: BORDA + BEBIDA (combinadas) -->
 
 <section id="etapa4" class="tela">
 
-<h2>Deseja adicionar borda?</h2>
+    <h2>Deseja adicionar borda?</h2>
 
-<div class="opcoes">
+    <div class="opcoes">
 
-<button class="opcao" onclick="selecionarBorda(false)">
-Borda Tradicional
-</button>
+        <button class="opcao" onclick="selecionarBorda(false)">
+            Borda Tradicional
+        </button>
 
-<button
-    id="btnBorda"
-    class="opcao"
-    onclick="selecionarBorda(true)"
->
-    Borda de Catupiry
-    <br>
-    <small id="valorBorda">
-        Acréscimo: R$ 11,90
-    </small>
-</button>
+        <button
+            class="opcao"
+            onclick="selecionarBorda('catupiry')"
+        >
+            Borda de Catupiry
+            <br>
+            <small id="valorBordaCatupiry">
+                Acréscimo: R$ 11,90
+            </small>
+        </button>
 
-</div>
+        <button
+            class="opcao"
+            onclick="selecionarBorda('cheddar')"
+        >
+            Borda de Cheddar
+            <br>
+            <small id="valorBordaCheddar">
+                Acréscimo: R$ 11,90
+            </small>
+        </button>
 
-</section>
+    </div>
 
-<!-- ETAPA 5 -->
+    <h2 class="titulo-bebida">Deseja adicionar bebida?</h2>
 
-<section id="etapa5" class="tela">
+    <div id="listaBebidas"></div>
 
-<h2>Deseja adicionar bebida?</h2>
-
-<div id="listaBebidas"></div>
-
-<button class="continuar" onclick="mostrarCarrinho()">
-Continuar
-</button>
+    <button class="continuar" onclick="mostrarCarrinho()">
+    Continuar
+    </button>
 
 </section>
 
@@ -209,9 +257,21 @@ Continuar
 type="text"
 id="bairro"
 placeholder="Bairro"
-oninput="verificarFrete()">
+oninput="verificarFrete(); mostrarSugestoesBairro();">
 
+<div id="sugestoesBairro"></div>
 <div id="infoFrete"></div>
+
+<select id="formaPagamento" required>
+    <option value="" selected disabled>
+        Forma de Pagamento
+    </option>
+    <option value="Dinheiro">💵 Dinheiro</option>
+    <option value="Pix">📱 Pix</option>
+    <option value="Cartão de Crédito">💳 Cartão de Crédito</option>
+    <option value="Cartão de Débito">💳 Cartão de Débito</option>
+</select>
+
 <textarea id="obs" placeholder="Observações"></textarea>
 
 <button class="btn-frete" onclick="calcularFrete()">
